@@ -14,6 +14,7 @@ Open you cmd and type =>
 
 cd desktop
 cd wfs-donate
+npm i
 node .
 
 You bot will come online!
