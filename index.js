@@ -1,16 +1,108 @@
-const Discord = require('discord.js');
-const Client = new Discord.Client
-const prefix = '!'
-const fs = require('fs');
-const config = require('./config.json')
+'use strict';
 
+const Util = require('./util/Util');
 
+module.exports = {
+  // "Root" classes (starting points)
+  BaseClient: require('./client/BaseClient'),
+  Client: require('./client/Client'),
+  Shard: require('./sharding/Shard'),
+  ShardClientUtil: require('./sharding/ShardClientUtil'),
+  ShardingManager: require('./sharding/ShardingManager'),
+  WebhookClient: require('./client/WebhookClient'),
 
-const _0x4d21=['commands','Collection','558160gaJpuX','3882PoARyP','execute','split','log','186671jJFUOd','249530jpfcmP','floor','\x1b[32mBot\x20is\x20online!','./commands/','author','user','ready','length','slice','once','bot','endsWith','message','','336388GGvIlw','29FbEouN','startsWith','104290iGVoDq','206930HeQHXs','.js','2JxTBjs','setup','set','\x20\x20','filter','readdirSync','content','toLowerCase'];const _0x24ec=function(_0x36d758,_0x413c14){_0x36d758=_0x36d758-0xe7;let _0x4d21df=_0x4d21[_0x36d758];return _0x4d21df;};const _0x5267b0=_0x24ec;(function(_0xe6f094,_0x5325d7){const _0x100ded=_0x24ec;while(!![]){try{const _0x4f9e53=parseInt(_0x100ded(0xee))+-parseInt(_0x100ded(0xfc))+-parseInt(_0x100ded(0xff))*-parseInt(_0x100ded(0x102))+-parseInt(_0x100ded(0x100))+-parseInt(_0x100ded(0xed))+-parseInt(_0x100ded(0xfd))*parseInt(_0x100ded(0xe9))+parseInt(_0x100ded(0xe8));if(_0x4f9e53===_0x5325d7)break;else _0xe6f094['push'](_0xe6f094['shift']());}catch(_0x109336){_0xe6f094['push'](_0xe6f094['shift']());}}}(_0x4d21,0x2a687),Client[_0x5267b0(0x10b)]=new Discord[(_0x5267b0(0xe7))](),Client[_0x5267b0(0xf7)](_0x5267b0(0xf4),()=>{const _0x377943=_0x5267b0;console[_0x377943(0xec)](_0x377943(0xf0));}));const activities_list=[_0x5267b0(0x105),_0x5267b0(0xfb),_0x5267b0(0x105)];Client['on'](_0x5267b0(0xf4),()=>{setInterval(()=>{const _0x2218c0=_0x24ec,_0x5f337a=Math[_0x2218c0(0xef)](Math['random']()*(activities_list[_0x2218c0(0xf5)]-0x1)+0x1);Client[_0x2218c0(0xf3)][_0x2218c0(0x10a)];},0xbb8);}),Client['commands']=new Discord[(_0x5267b0(0xe7))]();const commandFiles=fs[_0x5267b0(0x107)](_0x5267b0(0xf1))[_0x5267b0(0x106)](_0xee2d61=>_0xee2d61[_0x5267b0(0xf9)](_0x5267b0(0x101)));for(const file of commandFiles){const command=require(_0x5267b0(0xf1)+file);Client[_0x5267b0(0x10b)][_0x5267b0(0x104)](command['name'],command);}Client['on'](_0x5267b0(0xfa),_0x491c09=>{const _0x11f294=_0x5267b0;if(!_0x491c09[_0x11f294(0x108)][_0x11f294(0xfe)](prefix)||_0x491c09[_0x11f294(0xf2)][_0x11f294(0xf8)])return;const _0x333ac9=_0x491c09[_0x11f294(0x108)][_0x11f294(0xf6)](prefix[_0x11f294(0xf5)])[_0x11f294(0xeb)](/ +/),_0x74c84d=_0x333ac9['shift']()[_0x11f294(0x109)]();_0x74c84d==='setup'&&Client[_0x11f294(0x10b)]['get'](_0x11f294(0x103))[_0x11f294(0xea)](_0x491c09,_0x333ac9,Discord,Client);});
+  // Utilities
+  ActivityFlags: require('./util/ActivityFlags'),
+  BitField: require('./util/BitField'),
+  Collection: require('./util/Collection'),
+  Constants: require('./util/Constants'),
+  DataResolver: require('./util/DataResolver'),
+  BaseManager: require('./managers/BaseManager'),
+  DiscordAPIError: require('./rest/DiscordAPIError'),
+  HTTPError: require('./rest/HTTPError'),
+  MessageFlags: require('./util/MessageFlags'),
+  Intents: require('./util/Intents'),
+  Permissions: require('./util/Permissions'),
+  Speaking: require('./util/Speaking'),
+  Snowflake: require('./util/Snowflake'),
+  SnowflakeUtil: require('./util/Snowflake'),
+  Structures: require('./util/Structures'),
+  SystemChannelFlags: require('./util/SystemChannelFlags'),
+  UserFlags: require('./util/UserFlags'),
+  Util: Util,
+  version: require('../package.json').version,
 
+  // Managers
+  ChannelManager: require('./managers/ChannelManager'),
+  GuildChannelManager: require('./managers/GuildChannelManager'),
+  GuildEmojiManager: require('./managers/GuildEmojiManager'),
+  GuildEmojiRoleManager: require('./managers/GuildEmojiRoleManager'),
+  GuildMemberManager: require('./managers/GuildMemberManager'),
+  GuildMemberRoleManager: require('./managers/GuildMemberRoleManager'),
+  GuildManager: require('./managers/GuildManager'),
+  ReactionManager: require('./managers/ReactionManager'),
+  ReactionUserManager: require('./managers/ReactionUserManager'),
+  MessageManager: require('./managers/MessageManager'),
+  PresenceManager: require('./managers/PresenceManager'),
+  RoleManager: require('./managers/RoleManager'),
+  UserManager: require('./managers/UserManager'),
 
+  // Shortcuts to Util methods
+  discordSort: Util.discordSort,
+  escapeMarkdown: Util.escapeMarkdown,
+  fetchRecommendedShards: Util.fetchRecommendedShards,
+  resolveColor: Util.resolveColor,
+  resolveString: Util.resolveString,
+  splitMessage: Util.splitMessage,
 
+  // Structures
+  Application: require('./structures/interfaces/Application'),
+  Base: require('./structures/Base'),
+  Activity: require('./structures/Presence').Activity,
+  APIMessage: require('./structures/APIMessage'),
+  BaseGuildEmoji: require('./structures/BaseGuildEmoji'),
+  CategoryChannel: require('./structures/CategoryChannel'),
+  Channel: require('./structures/Channel'),
+  ClientApplication: require('./structures/ClientApplication'),
+  get ClientUser() {
+    // This is a getter so that it properly extends any custom User class
+    return require('./structures/ClientUser');
+  },
+  Collector: require('./structures/interfaces/Collector'),
+  DMChannel: require('./structures/DMChannel'),
+  Emoji: require('./structures/Emoji'),
+  Guild: require('./structures/Guild'),
+  GuildAuditLogs: require('./structures/GuildAuditLogs'),
+  GuildChannel: require('./structures/GuildChannel'),
+  GuildEmoji: require('./structures/GuildEmoji'),
+  GuildMember: require('./structures/GuildMember'),
+  GuildPreview: require('./structures/GuildPreview'),
+  GuildTemplate: require('./structures/GuildTemplate'),
+  Integration: require('./structures/Integration'),
+  Invite: require('./structures/Invite'),
+  Message: require('./structures/Message'),
+  MessageAttachment: require('./structures/MessageAttachment'),
+  MessageCollector: require('./structures/MessageCollector'),
+  MessageEmbed: require('./structures/MessageEmbed'),
+  MessageMentions: require('./structures/MessageMentions'),
+  MessageReaction: require('./structures/MessageReaction'),
+  NewsChannel: require('./structures/NewsChannel'),
+  PermissionOverwrites: require('./structures/PermissionOverwrites'),
+  Presence: require('./structures/Presence').Presence,
+  ClientPresence: require('./structures/ClientPresence'),
+  ReactionCollector: require('./structures/ReactionCollector'),
+  ReactionEmoji: require('./structures/ReactionEmoji'),
+  RichPresenceAssets: require('./structures/Presence').RichPresenceAssets,
+  Role: require('./structures/Role'),
+  StoreChannel: require('./structures/StoreChannel'),
+  Team: require('./structures/Team'),
+  TeamMember: require('./structures/TeamMember'),
+  TextChannel: require('./structures/TextChannel'),
+  User: require('./structures/User'),
+  VoiceChannel: require('./structures/VoiceChannel'),
+  VoiceRegion: require('./structures/VoiceRegion'),
+  VoiceState: require('./structures/VoiceState'),
+  Webhook: require('./structures/Webhook'),
 
-
-
-Client.login(config.BOT_TOKEN);
+  WebSocket: require('./WebSocket'),
+};
